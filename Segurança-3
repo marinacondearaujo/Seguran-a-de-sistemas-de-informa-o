@@ -1,0 +1,246 @@
+# Python program to demonstrate
+# Feistel Cipher Algorithm
+ 
+import binascii
+ 
+# Random bits key generation
+def rand_key(p):
+     
+    import random
+    key1 = ""
+    p = int(p)
+     
+    for i in range(p):
+         
+        temp = random.randint(0,1)
+        temp = str(temp)
+        key1 = key1 + temp
+         
+    return(key1)
+  
+# Function to implement bit exor
+def exor(a,b):
+     
+    temp = ""
+     
+    for i in range(n):
+         
+        if (a[i] == b[i]):
+            temp += "0"
+             
+        else:
+            temp += "1"
+             
+    return temp
+ 
+# Defining BinarytoDecimal() function
+def BinaryToDecimal(binary):
+       
+    # Using int function to convert to
+    # string   
+    string = int(binary, 2)
+       
+    return string
+ 
+# Feistel Cipher
+PT = "Hello"
+print("Plain Text is:", PT)
+ 
+# Converting the plain text to
+# ASCII
+PT_Ascii = [ord(x) for x in PT]
+ 
+# Converting the ASCII to
+# 8-bit binary format
+PT_Bin = [format(y,'08b') for y in PT_Ascii]
+PT_Bin = "".join(PT_Bin)
+ 
+n = int(len(PT_Bin)//2)
+L1 = PT_Bin[0:n]
+R1 = PT_Bin[n::]
+m = len(R1)
+  
+# Generate Key K1 for the
+# first round
+K1= rand_key(m)
+  
+# first round of Feistel
+f1 = exor(R1,K1)
+R2 = exor(f1,L1)
+L2 = R1
+
+# Generate Key K2 for the
+# second round
+K2= rand_key(m)
+  
+# second round of Feistel
+f2 = exor(R2,K2)
+R3 = exor(f2,L2)
+L3 = R2
+
+# Generate Key K3 for the
+# third round
+K3= rand_key(m)
+  
+# third round of Feistel
+f3 = exor(R3,K3)
+R4 = exor(f3,L3)
+L4 = R3
+
+# Generate Key K4 for the
+# fourth round
+K4= rand_key(m)
+  
+# fourth round of Feistel
+f4 = exor(R4,K4)
+R5 = exor(f4,L4)
+L5 = R4
+  
+# Generate Key K5 for the
+# fifth round
+K5= rand_key(m)
+  
+# fifth round of Feistel
+f5 = exor(R5,K5)
+R6 = exor(f5,L5)
+L6 = R5
+
+# Generate Key K6 for the
+# sixth round
+K6= rand_key(m)
+  
+# sixth round of Feistel
+f6 = exor(R6,K6)
+R7 = exor(f6,L6)
+L7 = R6
+
+# Generate Key K7 for the
+# seventh round
+K7= rand_key(m)
+  
+# seventh round of Feistel
+f7 = exor(R7,K7)
+R8 = exor(f7,L7)
+L8 = R7
+
+# Generate Key K8 for the
+# eighth round
+K8= rand_key(m)
+  
+# eighth round of Feistel
+f8 = exor(R8,K8)
+R9 = exor(f8,L8)
+L9 = R8
+
+# Generate Key K9 for the
+# ninth round
+K9= rand_key(m)
+  
+# ninth round of Feistel
+f9 = exor(R9,K9)
+R10 = exor(f9,L9)
+L10 = R9
+
+# Generate Key K10 for the
+# tenth round
+K10= rand_key(m)
+  
+# tenth round of Feistel
+f10 = exor(R10,K10)
+R11 = exor(f10,L10)
+L11 = R10
+
+# Generate Key K11 for the
+# eleventh round
+K11= rand_key(m)
+  
+# eleventh round of Feistel
+f11 = exor(R11,K11)
+R12 = exor(f11,L11)
+L12 = R11
+
+# Generate Key K12 for the
+# twelfth round
+K12= rand_key(m)
+  
+# twelfth round of Feistel
+f12 = exor(R12,K12)
+R13 = exor(f12,L12)
+L13 = R12
+
+# Generate Key K13 for the
+# thirtenth round
+K13= rand_key(m)
+  
+# thirtenth round of Feistel
+f13 = exor(R13,K13)
+R14 = exor(f13,L13)
+L14 = R13
+
+# Generate Key K14 for the
+# fourteenth round
+K14= rand_key(m)
+  
+# fourteenth round of Feistel
+f14 = exor(R14,K14)
+R15 = exor(f14,L14)
+L15 = R14
+
+# Generate Key K15 for the
+# fiftenth round
+K15= rand_key(m)
+  
+# fiftenth round of Feistel
+f15 = exor(R15,K15)
+R16 = exor(f15,L15)
+L16 = R15
+
+# Generate Key K16 for the
+# sixtenth round
+K16= rand_key(m)
+  
+# sixtenth round of Feistel
+f16 = exor(R16,K16)
+R17 = exor(f16,L16)
+L17 = R16
+  
+# Cipher text
+bin_data = L16 + R16
+str_data =' '
+ 
+for i in range(0, len(bin_data), 7):
+       
+    # slicing the bin_data from index range [0, 6]
+    # and storing it in temp_data
+    temp_data = bin_data[i:i + 7]
+        
+    # passing temp_data in BinarytoDecimal() function
+    # to get decimal value of corresponding temp_data
+    decimal_data = BinaryToDecimal(temp_data)
+        
+    # Decoding the decimal value returned by 
+    # BinarytoDecimal() function, using chr() 
+    # function which return the string corresponding 
+    # character for given ASCII value, and store it 
+    # in str_data
+    str_data = str_data + chr(decimal_data)
+     
+print("Cipher Text:", str_data)
+ 
+# Decryption
+L4 = L3
+R4 = R3
+  
+f3 = exor(L4,K2)
+L5 = exor(R4,f3)
+R5 = L4
+  
+f4 = exor(L5,K1)
+L6 = exor(R5,f4)
+R6 = L5
+PT1 = L6+R6
+  
+ 
+PT1 = int(PT1, 2)
+RPT = binascii.unhexlify( '%x'% PT1)
+print("Retrieved Plain Text is: ", RPT)
